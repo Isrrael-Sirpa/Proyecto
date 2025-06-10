@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Métodos de búsqueda de raíces</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Encabezado y Navegación -->
+  <header>
+    <nav class="nav-bar">
+      <a href="index.html">Inicio</a>
+      <a href="soluciones.html">Soluciones</a>
+      <a href="juegos.html">Juegos</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="inicio">
+      <h1>Métodos de búsqueda de raíces</h1>
+      <p>Calcular las raíces de una función <em>f(x)</em> (encontrar valores de <em>x</em> tales que <em>f(x)=0</em>) es esencial en problemas de balance, optimización y simulación en campos como la ingeniería, la economía y la física. Cuando no existe una solución analítica o la función es compleja, los métodos numéricos ofrecen aproximaciones eficientes con diferentes características:</p>
+
+      <h2>Bisección</h2>
+      <p>Parte de un intervalo [a, b] donde <em>f(a)·f(b)<0</em>. Cada iteración divide el intervalo a la mitad y conserva la submitad que mantiene el cambio de signo. Ofrece convergencia lineal y alta estabilidad, siendo adecuado para funciones continuas donde garantizamos bracket.</p>
+
+      <h2>Newton–Raphson</h2>
+      <p>Requiere la derivada <em>f'(x)</em> y un punto inicial <em>x<sub>0</sub></em>. Calcula iterativamente <em>x<sub>n+1</sub> = x<sub>n</sub> - f(x<sub>n</sub>)/f'(x<sub>n</sub>)</em>. Cerca de la raíz presenta convergencia cuadrática, pero es sensible a la elección de <em>x<sub>0</sub></em> y a derivadas pequeñas o nulas.</p>
+
+      <h2>Secante</h2>
+      <p>Evita el cálculo directo de derivadas usando dos últimos valores <em>x<sub>n-1</sub>, x<sub>n</sub></em> para aproximar la pendiente en la fórmula: <em>x<sub>n+1</sub> = x<sub>n</sub> - f(x<sub>n</sub>)*(x<sub>n</sub>-x<sub>n-1</sub>)/(f(x<sub>n</sub>)-f(x<sub>n-1</sub>))</em>. Proporciona convergencia superlineal con menor coste computacional.</p>
+
+      <h2>Falsa posición (Regula Falsi)</h2>
+      <p>Combina el bracket fijo de la bisección con la fórmula de la secante: <em>c = (a·f(b) - b·f(a)) / (f(b) - f(a))</em>. Mantiene la robustez del método de bisección y mejora la velocidad de convergencia en muchos casos prácticos.</p>
+
+      <p class="note">Utiliza el menú para acceder a <strong>Soluciones</strong> y ver ejemplos aplicados con gráficas, o a <strong>Juegos</strong> para experimentar paso a paso con cada metodología.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

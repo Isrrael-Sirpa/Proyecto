@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juegos Interactivos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js para gráficas en los juegos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="nav-bar">
+      <a href="index.html">Inicio</a>
+      <a href="soluciones.html">Soluciones</a>
+      <a href="juegos.html">Juegos</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Juegos interactivos</h2>
+
+    <!-- Explicaciones de los juegos -->
+    <section class="game-explanation">
+      <h3>Descripción de los juegos</h3>
+      <ul>
+        <li><strong>Bisección:</strong> Empiezas con un intervalo [a, b] donde la función cambia de signo. Cada paso reduce el intervalo a la mitad hasta aproximar la raíz.</li>
+        <li><strong>Newton–Raphson:</strong> Partes de una aproximación inicial x<sub>0</sub> y mejoras la estimación usando tangentes (<em>f'(x)</em>).</li>
+        <li><strong>Secante:</strong> Similar a Newton, pero en lugar de derivadas usa dos puntos previos para calcular la pendiente.</li>
+      </ul>
+    </section>
+
+    <!-- Juego de Bisección -->
+    <div id="game-bisection" class="game-card">
+      <h3>Bisección</h3>
+      <canvas id="chart-bis" class="game-chart"></canvas>
+      <p class="chart-expl">La gráfica muestra la función <em>f(x)</em> (línea continua) en el intervalo [0,1]. Los puntos de color rojo indican <em>a</em>, <em>b</em> y <em>c</em> (punto medio) correspondientes a la iteración actual.</p>
+      <p>Partimos de [0,1] y reducimos el intervalo hasta acercarnos a la raíz.</p>
+      <button id="start-bis" class="btn-start">Iniciar</button>
+      <button id="next-bis" class="btn-next" disabled>Siguiente</button>
+      <p>Iteración: <span id="bis-iter">0</span></p>
+      <p>Intervalo: [<span id="bis-a">0.0000</span>, <span id="bis-b">1.0000</span>]</p>
+      <p>Punto medio: <span id="bis-c">—</span></p>
+    </div>
+
+    <!-- Juego de Newton–Raphson -->
+    <div id="game-newton" class="game-card">
+      <h3>Newton–Raphson</h3>
+      <canvas id="chart-newton" class="game-chart"></canvas>
+      <p class="chart-expl">La gráfica dibuja <em>f(x)</em> (línea continua) en [0,5]. El punto azul muestra la aproximación <em>x<sub>n</sub></em> en cada iteración.</p>
+      <p>Partimos de x<sub>0</sub>=2 y usamos la tangente para mejorar la aproximación.</p>
+      <button id="start-new" class="btn-start">Iniciar</button>
+      <button id="next-new" class="btn-next" disabled>Siguiente</button>
+      <p>Iteración: <span id="iter-new">0</span></p>
+      <p>Aproximación: <span id="x-new">—</span></p>
+    </div>
+
+    <!-- Juego de Secante -->
+    <div id="game-secant" class="game-card">
+      <h3>Secante</h3>
+      <canvas id="chart-secant" class="game-chart"></canvas>
+      <p class="chart-expl">La gráfica presenta <em>f(x)</em> (línea continua) en [0,5] y marca en verde los puntos <em>x<sub>0</sub></em>, <em>x<sub>1</sub></em> y la nueva aproximación <em>x<sub>2</sub></em> para cada iteración.</p>
+      <p>Partimos de x<sub>0</sub>=0 y x<sub>1</sub>=5, y usamos la pendiente entre dos puntos para acercarnos a la raíz.</p>
+      <button id="start-sec" class="btn-start">Iniciar</button>
+      <button id="next-sec" class="btn-next" disabled>Siguiente</button>
+      <p>Iteración: <span id="iter-sec">0</span></p>
+      <p>Puntos: <span id="x0-sec">0.0000</span>, <span id="x1-sec">5.0000</span></p>
+      <p>Siguiente: <span id="x2-sec">—</span></p>
+    </div>
+
+  </main>
+
+  <!-- Carga de scripts al final del documento -->
+  <script src="script.js" defer></script>
+  <script src="games.js" defer></script>
+</body>
+</html>
