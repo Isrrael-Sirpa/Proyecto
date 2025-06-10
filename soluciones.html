@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soluciones - Métodos de búsqueda de raíces</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Estilos para la tabla comparativa */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #9CA3AF;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .comparison-table th {
+      background-color: #4F46E5;
+      color: #FFFFFF;
+    }
+    .comparison-table tr:nth-child(even) {
+      background-color: #F3F4F6;
+    }
+    .chart-expl {
+      font-style: italic;
+      color: #6B7280;
+      margin-bottom: 1rem;
+    }
+    /* Control de visibilidad de pestañas */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-bar">
+      <a href="index.html">Inicio</a>
+      <a href="soluciones.html">Soluciones</a>
+      <a href="juegos.html">Juegos</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h2>Soluciones de los ejercicios</h2>
+    <div class="tabs">
+      <button data-target="ej1" class="tab-btn active">Ejercicio 1</button>
+      <button data-target="ej2" class="tab-btn">Ejercicio 2</button>
+      <button data-target="ej3" class="tab-btn">Ejercicio 3</button>
+    </div>
+
+    <!-- EJERCICIOS -->
+    <section id="ej1" class="tab-content active">
+      <h3>1. Tasa de interés efectiva</h3>
+      <p>Queremos la tasa <strong>r</strong> que hace crecer 1000 a 1500 en 5 períodos. Montamos <em>f(r)=1000·(1+r)<sup>5</sup>−1500</em> y usamos:</p>
+      <ul>
+        <li><strong>Bisección:</strong> Reducimos [0,1] cada vez que f cambia de signo.</li>
+        <li><strong>Newton–Raphson:</strong> Partimos de r<sub>0</sub>=0.1 y aplicamos r<sub>n+1</sub>=r<sub>n</sub>−f/f'.</li>
+        <li><strong>Secante:</strong> Usamos dos puntos (0 y 0.5) para aproximar la derivada.</li>
+        <li><strong>Falsa posición:</strong> Igual que secante pero sin salir del intervalo inicial.</li>
+      </ul>
+      <p class="chart-expl">La gráfica muestra <em>f(r)</em> en [0,1] y el punto donde cada método se detiene al converger.</p>
+      <canvas id="chart1"></canvas>
+      <ul>
+        <li>Bisección: <span id="r_bis1"></span></li>
+        <li>Newton–Raphson: <span id="r_newton1"></span></li>
+        <li>Secante: <span id="r_secant1"></span></li>
+        <li>Falsa posición: <span id="r_fpos1"></span></li>
+      </ul>
+    </section>
+
+    <section id="ej2" class="tab-content">
+      <h3>2. Punto de equilibrio</h3>
+      <p>Buscamos la producción <strong>x</strong> donde <em>Ingresos = Costos</em>. Definimos <em>f(x)=200+30x−0.1x²−50x</em>.</p>
+      <ul>
+        <li><strong>Bisección:</strong> Encontramos [0,50] donde f cambia de signo.</li>
+        <li><strong>Newton–Raphson:</strong> Con x<sub>0</sub>=10 y derivada f'.</li>
+        <li><strong>Secante:</strong> Igual que en el ejercicio 1, sin derivadas.</li>
+        <li><strong>Falsa posición:</strong> Combina bracket con secante.</li>
+      </ul>
+      <p class="chart-expl">La gráfica presenta f(x) y cómo los métodos convergen al igualar ingresos y costos.</p>
+      <canvas id="chart2"></canvas>
+      <ul>
+        <li>Bisección: <span id="x_bis2"></span></li>
+        <li>Newton–Raphson: <span id="x_newton2"></span></li>
+        <li>Secante: <span id="x_secant2"></span></li>
+        <li>Falsa posición: <span id="x_fpos2"></span></li>
+      </ul>
+    </section>
+
+    <section id="ej3" class="tab-content">
+      <h3>3. Tiempo de vuelo de un proyectil</h3>
+      <p>Usamos <em>f(t)=20t - 4.905t²</em> y buscamos t>0 tal que f(t)=0.</p>
+      <ul>
+        <li><strong>Bisección:</strong> Intervalo [0,5].</li>
+        <li><strong>Newton–Raphson:</strong> t<sub>0</sub>=2 y tangente.</li>
+        <li><strong>Secante</strong> y <strong>Falsa posición</strong>: métodos equivalentes con bracket o dos puntos.</li>
+      </ul>
+      <p class="chart-expl">En la gráfica observamos la parábola y el punto donde cada método halla el instante de caída.</p>
+      <canvas id="chart3"></canvas>
+      <ul>
+        <li>Bisección: <span id="t_bis3"></span></li>
+        <li>Newton–Raphson: <span id="t_newton3"></span></li>
+        <li>Secante: <span id="t_secant3"></span></li>
+        <li>Falsa posición: <span id="t_fpos3"></span></li>
+      </ul>
+    </section>
+
+    <!-- Tabla comparativa -->
+    <section id="comparacion" class="comparison-section">
+      <h3>Comparativa de métodos</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Velocidad de convergencia</th>
+            <th>Requiere derivada</th>
+            <th>Bracket garantizado</th>
+            <th>Estabilidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bisección</td>
+            <td>Lineal</td>
+            <td>No</td>
+            <td>Sí</td>
+            <td>Muy alta</td>
+          </tr>
+          <tr>
+            <td>Newton–Raphson</td>
+            <td>Cuadrática</td>
+            <td>Sí</td>
+            <td>No</td>
+            <td>Media</td>
+          </tr>
+          <tr>
+            <td>Secante</td>
+            <td>Superlineal</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Media</td>
+          </tr>
+          <tr>
+            <td>Falsa posición</td>
+            <td>Superlineal (a veces lenta)</td>
+            <td>No</td>
+            <td>Sí</td>
+            <td>Alta</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    // Lógica de pestañas
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Botones
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Contenidos
+        document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+  </script>
+  <script src="script.js" defer></script>
+</body>
+</html>
